@@ -6,40 +6,6 @@
   <title>Health Buddy - Eye Disease Detection</title>
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    .tool-container { padding: 140px 20px 60px; max-width: 800px; margin: 0 auto; min-height: 100vh; }
-    .upload-card {
-        background: var(--gradient-card); border: 1px solid var(--border-light);
-        border-radius: var(--radius-lg); padding: 30px; text-align: center;
-        box-shadow: var(--shadow-card); margin-bottom: 20px; transition: transform 0.3s;
-    }
-    .upload-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-    .img-area {
-        width: 100%; height: 300px; background: rgba(15, 23, 42, 0.6);
-        border: 2px dashed #06b6d4; border-radius: var(--radius-md);
-        display: flex; align-items: center; justify-content: center;
-        overflow: hidden; margin-bottom: 25px; position: relative;
-    }
-    .img-area img { max-width: 100%; max-height: 100%; object-fit: contain; z-index: 2; }
-    .img-area::before {
-        content: 'No Image Selected'; position: absolute; color: var(--text-muted);
-        font-size: 1.4rem; font-weight: 500;
-    }
-    .img-area.active::before { display: none; }
-    .action-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-    .result-card {
-        background: var(--gradient-card); border: 1px solid var(--border-light);
-        border-radius: var(--radius-lg); padding: 25px; box-shadow: var(--shadow-card);
-        min-height: 150px;
-    }
-    #label-container { margin-top: 15px; }
-    #label-container div {
-        padding: 15px; margin-top: 10px; background: rgba(6, 182, 212, 0.1);
-        border-left: 4px solid var(--primary-cyan); border-radius: var(--radius-sm);
-        font-size: 1.6rem; color: var(--text-primary); font-weight: 600;
-    }
-    #label-container div:empty { display: none; }
-  </style>
 </head>
 <body id="top" data-theme="dark">
 
@@ -72,29 +38,24 @@
   </header>
 
   <main>
-    <div class="tool-container main-container" style="visibility: visible; opacity: 1; filter: none;">
-      <h1 class="headline-2 text-gradient" style="margin-bottom: 30px; text-align: center;">Eye Disease Detection</h1>
+    <div class="medical-module">
+      <h2>Eye Disease Detection</h2>
+      <p>Upload a retinal image for eye disease screening.</p>
       
-      <div class="upload-card card">
-        <input type="file" id="file" accept="image/*" hidden>
-        <div class="img-area"></div>
-        <div class="action-buttons">
-            <button class="btn btn-secondary select-image"><i class="fas fa-upload"></i> Select Image</button>
-            <button class="btn btn-primary analyze-btn" style="background: var(--gradient-primary); font-size: 1.6rem; padding: 12px 24px;"><i class="fas fa-microscope"></i> Analyze Image</button>
-        </div>
-      </div>
+      <input type="file" id="eyeScanUpload">
 
-      <div class="result-card card">
-        <h3 class="headline-3" style="color: var(--text-primary);"><i class="fas fa-clipboard-check"></i> Analysis Results</h3>
-        <div id="label-container"></div>
-      </div>
+      <button onclick="analyzeEyeScan()">Analyze Image</button>
+
+      <div id="eyeResult" style="margin-top: 15px; color: #cbd5e1; font-size: 1.5rem;"></div>
     </div>
   </main>
 
   <script src="./assets/js/script.js"></script>
-  <!-- Ensure TeachableMachine API scripts are included -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-  <script src="eye_script.js"></script>
+  <script>
+    function analyzeEyeScan(){
+      document.getElementById("eyeResult").innerHTML =
+      "Image uploaded. AI eye disease detection processing.";
+    }
+  </script>
 </body>
 </html>

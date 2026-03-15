@@ -136,9 +136,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    function getFractureAdvice(){
+        return `Possible Condition:
+Bone fracture or serious injury.
+
+Immediate First Aid:
+• Do not move the injured limb unnecessarily
+• Immobilize the limb using a splint or support
+• Apply ice to reduce swelling
+• Keep the injured limb elevated
+
+Pain Relief:
+• Paracetamol
+• Ibuprofen (if prescribed)
+
+Important:
+Visit the nearest hospital or emergency center immediately for X-ray and proper treatment.
+
+Emergency Warning:
+If there is severe swelling, deformity, bleeding, numbness, or inability to move the limb, seek emergency medical help immediately.`;
+    }
+
     function getLocalResponse(message) {
         const msg = message.toLowerCase();
         
+        const fractureKeywords = [
+            "fracture", "broken bone", "broken leg", "broken arm", "broken hand",
+            "bone fracture", "leg fracture", "arm fracture", "hand fracture",
+            "bone injury", "dislocation", "sprain", "twisted ankle", "leg injury", "arm injury"
+        ];
+        
+        if(fractureKeywords.some(word => msg.includes(word))){
+            return getFractureAdvice();
+        }
+
         if (msg.includes("fever") || msg.includes("జ్వరం") || msg.includes("बुखार")) {
             return responses.fever[currentLanguage];
         }
@@ -254,6 +285,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function detectSymptomsFromMessage(message) {
         const msg = message.toLowerCase();
         const detected = [];
+        
+        const fractureKeywords = [
+            "fracture", "broken bone", "broken leg", "broken arm", "broken hand",
+            "bone fracture", "leg fracture", "arm fracture", "hand fracture",
+            "bone injury", "dislocation", "sprain", "twisted ankle", "leg injury", "arm injury", "broke my leg", "broke my arm"
+        ];
+        if (fractureKeywords.some(word => msg.includes(word))) {
+            detected.push("fracture");
+        }
+
         if (msg.includes("fever") || msg.includes("జ్వరం") || msg.includes("बुखार") || msg.includes("bukhar") || msg.includes("temperature")) {
             detected.push("fever");
         }

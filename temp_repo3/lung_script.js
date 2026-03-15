@@ -50,14 +50,26 @@ const selectImage = document.querySelector('.select-image');
         imgArea.dataset.img = file.name; // Use the file name instead of the image name
     
         image.src = event.target.result;
-        image.onload = async function () {
+        image.onload = function () {
           console.log("Image loaded:", image.src);
-          await predict(image); // Use the await keyword when calling predict
+          window.currentSelectedImage = image;
         }
       }
     
       reader.readAsDataURL(file); // Use the file object instead of the image object
     })
+
+    // Event listener for the analyze button
+    const analyzeBtn = document.querySelector('.analyze-btn');
+    if (analyzeBtn) {
+      analyzeBtn.addEventListener('click', async function () {
+        if (window.currentSelectedImage) {
+          await predict(window.currentSelectedImage);
+        } else {
+          alert("Please upload an image first.");
+        }
+      });
+    }
     
     // Event listener for the select image button
     selectImage.addEventListener('click', function () {

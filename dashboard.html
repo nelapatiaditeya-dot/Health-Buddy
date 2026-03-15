@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Buddy - Dashboard</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body id="top">
+
+  <!-- HEADER: Consistent -->
+  <header class="header" data-header>
+    <div class="container">
+      <div class="brand-group">
+        <a href="index.html" class="logo">
+          <i class="fas fa-heartbeat"></i> Health Buddy
+        </a>
+        <div class="page-indicator-wrapper">
+          <a href="index.html" class="home-btn">
+            <i class="fas fa-home"></i> Home
+          </a>
+          <span id="page-title-indicator"></span>
+        </div>
+      </div>
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <a href="index.html" class="logo">
+            <i class="fas fa-heartbeat"></i> Health Buddy
+          </a>
+          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler">
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+        <ul class="navbar-list">
+          <li><a href="index.html" class="navbar-link" data-nav-toggler><i class="fas fa-home"></i> Home</a></li>
+          
+          <li>
+            <a href="#" id="open-chatbot" class="navbar-link chatbot-highlight" data-nav-toggler>
+              <i class="fas fa-robot"></i> HealthBuddy AI
+            </a>
+          </li>
+          
+          <li class="dropdown">
+            <a href="#" class="navbar-link">Others <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" class="navbar-link" id="doctors-link"><i class="fas fa-user-md"></i> Doctors Near Me</a></li>
+              <li><a href="appointment.html" class="navbar-link"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+              <li><a href="dashboard.html" class="navbar-link active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+              <li><a href="contact1.html" class="navbar-link"><i class="fas fa-envelope"></i> Contact</a></li>
+              <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjrOVqQk_65ywZNGShHubc1eibTaMHyE-vkvCTHBlzig0aNw/viewform?embedded=true" class="navbar-link"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler">
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+    </div>
+  </header>
+
+  <main class="dashboard-main" style="padding: 40px 20px; min-height: 80vh;">
+    <div class="container dashboard-grid">
+      
+      <!-- Health Score -->
+      <div class="card health-summary-card">
+        <h3><ion-icon name="heart-circle-outline"></ion-icon> Health Score</h3>
+        <div class="circular-progress" id="health-score-progress">
+          <div class="inner-circle">
+            <span id="health-score-value">100%</span>
+          </div>
+        </div>
+        <p id="health-status-text">Excellent</p>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card quick-actions-card">
+        <h3><ion-icon name="flash-outline"></ion-icon> Quick Actions</h3>
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="document.getElementById('chatToggleBtn').click()">Check Symptoms</button>
+          <a href="appointment.html" class="btn btn-secondary" style="background: rgba(30,41,59,0.5); border: 1px solid var(--border-light); color: var(--text-primary);">Book Appointment</a>
+          <button id="clear-data" class="btn btn-secondary" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444;">Clear History</button>
+        </div>
+      </div>
+
+      <!-- Chatbot Insights & Daily Tip -->
+      <div class="card insights-card chatbot-insights-card">
+        <h3 class="chatbot-insight-title"><ion-icon name="bulb-outline"></ion-icon> Chatbot Insights</h3>
+        <p id="daily-health-tip" class="chatbot-insight-text" style="margin-top: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light);">Drink at least 8 glasses of water today to stay hydrated and improve metabolism.</p>
+        <h4 style="font-size: 1.1rem; color: var(--text-primary); margin-top: 15px;"><ion-icon name="flower-outline"></ion-icon> Menstrual Cycle Insights</h4>
+        <p id="menstrual-insight" class="chatbot-insight-description" style="margin-top: 5px;">Tracking regular cycles helps in maintaining reproductive health. Ask Health Buddy if you have concerns.</p>
+      </div>
+
+      <!-- Data Visualization Charts -->
+      <div class="card chart-card">
+        <h3>Symptom Frequency</h3>
+        <div style="position: relative; height:200px; width:100%;"><canvas id="symptomChart"></canvas></div>
+      </div>
+      <div class="card chart-card weekly-card">
+        <h3>Weekly Activity</h3>
+        <div style="position: relative; height:200px; width:100%;"><canvas id="weeklyChart"></canvas></div>
+      </div>
+      <div class="card chart-card sleep-card">
+        <h3>Sleep & Hydration Tracking</h3>
+        <div style="position: relative; height:200px; width:100%;"><canvas id="sleepChart"></canvas></div>
+      </div>
+
+      <!-- Recent Symptoms -->
+      <div class="card timeline-card symptom-card" style="grid-column: span 2;">
+        <h3><ion-icon name="time-outline"></ion-icon> Recent Symptoms</h3>
+        <div class="timeline" id="symptom-timeline"></div>
+      </div>
+      
+      <!-- Suggested Medicines -->
+      <div class="card timeline-card medicine-card" style="grid-column: span 2;">
+        <h3><ion-icon name="medkit-outline"></ion-icon> Suggested Medicines</h3>
+        <div class="timeline" id="medicine-timeline"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Chat Widget -->
+  <div class="chat-widget">
+    <button id="chatToggleBtn" class="chat-toggle-btn">
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+    </button>
+    <div id="chatWindow" class="chat-window">
+      <div class="chat-header">
+        <h3><ion-icon name="medkit-outline"></ion-icon> HealthBuddy Assistant</h3>
+        <div class="chat-header-actions">
+          <select id="languageSelector" class="language-selector">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="te">Telugu</option>
+          </select>
+          <button id="chatCloseBtn" class="chat-close-btn">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+      <div id="chatMessages" class="chat-messages"></div>
+      <div class="chat-input-container">
+        <button id="chatVoiceBtn" class="chat-voice-btn">
+          <ion-icon name="mic-outline"></ion-icon>
+        </button>
+        <input id="chatInput" class="chat-input" placeholder="Type your message...">
+        <button id="chatSendBtn" class="chat-send-btn">
+          <ion-icon name="send-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/chatbot.js"></script>
+  <script src="./assets/js/dashboard.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

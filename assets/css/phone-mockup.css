@@ -1,0 +1,125 @@
+/*-----------------------------------*\
+  #Mobile Phone Mockup Styles
+\*-----------------------------------*/
+
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #e9edf2 !important;
+  min-height: 100vh;
+}
+
+/* Page Background */
+.phone-mockup-page {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e9edf2 0%, #d1d5db 100%);
+  margin: 0;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   PHONE FRAME - Small centered phone (375px x 720px)
+   ============================================ */
+.phone-frame {
+  width: 375px;
+  height: 720px;
+  background: #000000;
+  border-radius: 40px;
+  padding: 12px;
+  margin: 80px auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* ============================================
+   PHONE SCREEN - Clean screen without notch
+   ============================================ */
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  pointer-events: auto;
+}
+
+/* Iframe fills the screen */
+.phone-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  pointer-events: auto;
+}
+
+/* ============================================
+   HOME INDICATOR - Bottom Gesture Bar
+   ============================================ */
+.phone-home-indicator {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: #333333;
+  border-radius: 10px;
+  z-index: 100;
+}
+
+/* ============================================
+   SIDE BUTTONS - Hardware Buttons
+   ============================================ */
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 100px;
+  width: 3px;
+  height: 25px;
+  background: #333333;
+  border-radius: 2px 0 0 2px;
+}
+
+.phone-frame::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 140px;
+  width: 3px;
+  height: 40px;
+  background: #333333;
+  border-radius: 2px 0 0 2px;
+}
+
+.phone-mute-btn {
+  position: absolute;
+  left: -3px;
+  top: 80px;
+  width: 3px;
+  height: 15px;
+  background: #333333;
+  border-radius: 2px 0 0 2px;
+}
+
+.phone-volume-btn {
+  position: absolute;
+  left: -3px;
+  top: 110px;
+  width: 3px;
+  height: 35px;
+  background: #333333;
+  border-radius: 2px 0 0 2px;
+}
+

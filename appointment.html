@@ -4,300 +4,301 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./appointment.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="shortcut icon" href="./assets/images/title.png" type="image/svg+xml">
     <title>Health-Buddy - Schedule Appointment</title>
-    
+
+    <!-- 
+      - dark theme styles
+    -->
     <style>
-        /* Professional styling for appointment page using new Sophisticated Gray & Blue Theme */
-        body {
-            background-color: #f9fafb;
-            min-height: 100vh;
-            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        .appointment-container {
-            max-width: 900px;
-            width: 100%;
-            margin: 40px auto;
-            padding: 40px;
-            background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
-            border-radius: 16px;
-            box-shadow: 
-                0 10px 25px rgba(0, 0, 0, 0.12),
-                0 4px 6px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e5e7eb;
-            backdrop-filter: blur(10px);
-        }
-        
+      /* Dark Theme Styles */
+      :root {
+        --bg-primary: #0f172a;
+        --bg-secondary: #111827;
+        --bg-tertiary: #1f2937;
+        --text-primary: #f9fafb;
+        --text-secondary: #e5e7eb;
+        --text-muted: #9ca3af;
+        --border-color: #334155;
+        --accent-color: #60a5fa;
+        --accent-hover: #3b82f6;
+        --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+        --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Enhanced Header for Dark Theme */
+      .header {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow-light);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-open-btn {
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .nav-open-btn:hover {
+        color: var(--accent-color);
+        background-color: rgba(96, 165, 250, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* Enhanced Appointment Container for Dark Theme */
+      .appointment-page {
+        background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+        min-height: 100vh;
+        padding: 4rem 0;
+      }
+
+      .appointment-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .back-btn {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        display: inline-block;
+        margin-bottom: 2rem;
+      }
+
+      .back-btn:hover {
+        color: var(--accent-color);
+        border-color: var(--accent-color);
+        transform: translateY(-2px);
+      }
+
+      .appointment-header {
+        color: var(--text-primary);
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 3rem;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Enhanced Form Styling for Dark Theme */
+      .form-section {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: var(--shadow-medium);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+      }
+
+      .section-title {
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: block;
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+        border-radius: 2px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .form-group label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .required {
+        color: #ef4444;
+        font-weight: 800;
+      }
+
+      .form-group input,
+      .form-group select {
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .form-group input::placeholder {
+        color: var(--text-muted);
+      }
+
+      /* Enhanced Submit Button for Dark Theme */
+      .submit-btn {
+        background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+        border: none;
+        color: white;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-medium);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 100%;
+        margin-top: 2rem;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-heavy);
+        background: linear-gradient(135deg, var(--accent-hover), #06b6d4);
+      }
+
+      /* Enhanced Footer for Dark Theme */
+      footer {
+        background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+        color: var(--text-primary);
+        padding: 4rem 0 2rem;
+      }
+
+      .footer-brand {
+        text-align: center;
+      }
+
+      .footer-text {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .appointment-header {
-            font-size: 28px;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 35px;
-            position: relative;
-            padding-bottom: 20px;
-            letter-spacing: -0.5px;
-        }
-        
-        .appointment-header::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 4px;
-            width: 80px;
-            border-radius: 8px;
-            background: linear-gradient(90deg, #2563eb, #60a5fa);
-        }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: #2563eb;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 12px 24px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            border: 2px solid #2563eb;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: transparent;
-            letter-spacing: 0.3px;
-            box-shadow: 0 2px 0 rgba(37, 99, 235, 0.2);
-        }
-        
-        .back-btn:hover {
-            background-color: #2563eb;
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
-        }
-        
-        .form-section {
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 25px;
-            display: block;
-            letter-spacing: 0.3px;
-            position: relative;
-            padding-left: 15px;
-        }
-        
-        .section-title::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(180deg, #2563eb, #60a5fa);
-            border-radius: 2px;
+          font-size: 2rem;
         }
         
         .form-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+          grid-template-columns: 1fr;
         }
-        
-        .form-group {
-            margin-bottom: 24px;
-        }
-        
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #6b7280;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 500;
-            color: #0f172a;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background-color: #ffffff;
-            box-sizing: border-box;
-            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 
-                0 0 0 4px rgba(37, 99, 235, 0.1),
-                0 4px 12px rgba(37, 99, 235, 0.15);
-            transform: translateY(-1px);
-        }
-        
-        .form-group select {
-            cursor: pointer;
-            color: #6b7280;
-            background-image: linear-gradient(45deg, transparent 50%, #2563eb 50%), linear-gradient(135deg, #2563eb 50%, transparent 50%), linear-gradient(90deg, #e5e7eb, #e5e7eb);
-            background-position: calc(100% - 20px) calc(1px), calc(100% - 15px) calc(1px), calc(100% - 2.5rem) 0.5em;
-            background-size: 5px 5px, 5px 5px, 1px 1.5em;
-            background-repeat: no-repeat;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, #2563eb, #60a5fa);
-            color: white;
-            border: none;
-            padding: 16px 36px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        .submit-btn:hover {
-            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
-        }
-        
-        .submit-btn:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        }
-        
-        .required {
-            color: #ef4444;
-            margin-left: 2px;
-            font-weight: 700;
-        }
-        
-        /* Professional input styling */
-        .form-group input::placeholder {
-            color: #94a3b8;
-            font-weight: 400;
-        }
-        
-        /* Subtle animation for form sections */
-        .form-section {
-            animation: fadeIn 0.6s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .appointment-container {
-                margin: 20px 16px;
-                padding: 24px;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            
-            .appointment-header {
-                font-size: 22px;
-            }
-            
-            .back-btn {
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .appointment-container {
-                padding: 20px;
-            }
-            
-            .submit-btn {
-                width: 100%;
-                padding: 14px 20px;
-            }
-        }
-    </style>
-    
-    <!-- Custom footer styling for white text with high specificity -->
-    <style>
-        /* High specificity selectors to override main CSS */
-        footer .container .card.footer .section.footer-top .footer-list .footer-list-title {
-            color: #ffffff !important;
-        }
-        
-        footer .container .card.footer .section.footer-top .footer-list ul li a.footer-link {
-            color: #ffffff !important;
-        }
-        
-        footer .container .card.footer .section.footer-top .footer-list ul li a.footer-link:hover {
-            color: #f63 !important;
-        }
-        
-        /* Additional override for any existing hover styles */
-        footer .container .card.footer .section.footer-top .footer-list ul li a.footer-link.hover-2:hover {
-            color: #f63 !important;
-        }
+      }
     </style>
 </head>
 <body id="top">
-    <!-- Include main site header -->
+    <!-- Header -->
     <header class="header" data-header>
         <div class="container">
-            <a href="index.html" class="logo">
-                <img src="./assets/images/logo.png" width="160" height="46" alt="Health Buddy">
-            </a>
-
+            <div class="brand-group">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-heartbeat"></i> Health Buddy
+                </a>
+                <div class="page-indicator-wrapper">
+                    <a href="index.html" class="home-btn">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <span id="page-title-indicator"></span>
+                </div>
+            </div>
             <nav class="navbar" data-navbar>
                 <div class="navbar-top">
                     <a href="index.html" class="logo">
-                        <img src="./assets/images/logo.png" width="160" height="46" alt="Heath Buddy">
+                        <i class="fas fa-heartbeat"></i> Health Buddy
                     </a>
                     <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
                         <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
                     </button>
                 </div>
-
                 <ul class="navbar-list">
-                    <li><a href="index.html" class="navbar-link hover-1" data-nav-toggler>Home</a></li>
-                    <li><a href="appointment.html" class="navbar-link" data-nav-toggler>Appointment</a></li>
-                    <li><a href="contact1.html" class="navbar-link hover-1" data-nav-toggler>Contact</a></li>
-                    <li><a href="#" class="navbar-link hover-1" id="doctors-link">Doctors Near Me</a></li>
-                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjrOVqQk_65ywZNGShHubc1eibTaMHyE-vkvCTHBlzig0aNw/viewform?embedded=true" class="navbar-link hover-1" data-nav-toggler>Feedback</a></li>
+                    <li><a href="index.html" class="navbar-link" data-nav-toggler><i class="fas fa-home"></i> Home</a></li>
+                    
+                    <li>
+                      <a href="#" id="open-chatbot" class="navbar-link chatbot-highlight" data-nav-toggler>
+                        <i class="fas fa-robot"></i> HealthBuddy AI
+                      </a>
+                    </li>
+                    
+                    <li class="dropdown">
+                      <a href="#" class="navbar-link">Others <i class="fas fa-chevron-down"></i></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#" class="navbar-link" id="doctors-link"><i class="fas fa-user-md"></i> Doctors Near Me</a></li>
+                        <li><a href="appointment.html" class="navbar-link active"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+                        <li><a href="dashboard.html" class="navbar-link"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                        <li><a href="contact1.html" class="navbar-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjrOVqQk_65ywZNGShHubc1eibTaMHyE-vkvCTHBlzig0aNw/viewform?embedded=true" class="navbar-link"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+                      </ul>
+                    </li>
                 </ul>
             </nav>
+
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+                <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+            </button>
         </div>
     </header>
 
-    <main>
+    <main class="appointment-page">
         <div class="appointment-container">
             <a href="index.html" class="back-btn">
                 ← Back to Home
@@ -307,7 +308,7 @@
 
             <form action="https://formspree.io/f/mayzlqkj" method="POST">
                 <div class="form-section">
-                    <span class="section-title">Patient Details</span>
+                    <span class="section-title">Patient Information</span>
                     
                     <div class="form-grid">
                         <div class="form-group">
@@ -321,7 +322,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email <span class="required">*</span></label>
+                            <label for="email">Email Address <span class="required">*</span></label>
                             <input type="email" id="email" name="Email" placeholder="Enter your email address" required>
                         </div>
 
@@ -348,11 +349,11 @@
                 </div>
 
                 <div class="form-section">
-                    <span class="section-title">Appointment Details</span>
+                    <span class="section-title">Medical Information</span>
                     
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="department">Department <span class="required">*</span></label>
+                            <label for="department">Medical Department <span class="required">*</span></label>
                             <select id="department" name="Department" required>
                                 <option disabled selected>Select Department</option>
                                 <option>Cardiology</option>
@@ -373,7 +374,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="location">Location <span class="required">*</span></label>
+                            <label for="location">Preferred Location <span class="required">*</span></label>
                             <input type="text" id="location" name="Location" placeholder="Enter preferred location" required>
                         </div>
 
@@ -383,8 +384,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="issue">Current Issue <span class="required">*</span></label>
-                            <input type="text" id="issue" name="Issue" placeholder="Describe your current health issue" required>
+                            <label for="issue">Current Health Concern <span class="required">*</span></label>
+                            <input type="text" id="issue" name="Issue" placeholder="Describe your current health concern" required>
                         </div>
 
                         <div class="form-group">
@@ -397,9 +398,106 @@
                             <input type="time" id="time" name="Time" required>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-section">
+                    <span class="section-title">Medical History & Lifestyle</span>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="allergies">Known Allergies <span class="required">*</span></label>
+                            <input type="text" id="allergies" name="Allergies" placeholder="List any known allergies (medications, foods, environmental)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="medications">Current Medications <span class="required">*</span></label>
+                            <input type="text" id="medications" name="Medications" placeholder="List current medications and dosages">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="conditions">Chronic Medical Conditions <span class="required">*</span></label>
+                            <input type="text" id="conditions" name="Chronic Conditions" placeholder="List any chronic conditions (diabetes, hypertension, etc.)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="smoking">Tobacco Use <span class="required">*</span></label>
+                            <select id="smoking" name="Smoking Status" required>
+                                <option disabled selected>Select tobacco use</option>
+                                <option>Never used</option>
+                                <option>Current user</option>
+                                <option>Former user</option>
+                                <option>Occasional use</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alcohol">Alcohol Consumption <span class="required">*</span></label>
+                            <select id="alcohol" name="Alcohol Consumption" required>
+                                <option disabled selected>Select alcohol consumption</option>
+                                <option>None</option>
+                                <option>Occasional (1-2 drinks/month)</option>
+                                <option>Moderate (1-2 drinks/day)</option>
+                                <option>Heavy (3+ drinks/day)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="familyHistory">Family Medical History <span class="required">*</span></label>
+                            <input type="text" id="familyHistory" name="Family Medical History" placeholder="Significant family medical conditions">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="symptoms">Symptoms Duration <span class="required">*</span></label>
+                            <select id="symptoms" name="Symptoms Duration" required>
+                                <option disabled selected>How long have you experienced symptoms?</option>
+                                <option>Less than 1 week</option>
+                                <option>1-2 weeks</option>
+                                <option>1-3 months</option>
+                                <option>3-6 months</option>
+                                <option>More than 6 months</option>
+                                <option>Not applicable</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="previousVisits">Previous Specialist Consultations <span class="required">*</span></label>
+                            <select id="previousVisits" name="Previous Specialist Visits" required>
+                                <option disabled selected>Have you consulted a specialist for this concern?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                                <option>Not applicable</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <span class="section-title">Emergency Contact & Insurance</span>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="emergencyContact">Emergency Contact Name <span class="required">*</span></label>
+                            <input type="text" id="emergencyContact" name="Emergency Contact Name" placeholder="Full name of emergency contact" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emergencyPhone">Emergency Contact Phone <span class="required">*</span></label>
+                            <input type="tel" id="emergencyPhone" name="Emergency Contact Phone" placeholder="Emergency contact phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="insurance">Insurance Provider <span class="required">*</span></label>
+                            <input type="text" id="insurance" name="Insurance Provider" placeholder="Name of your insurance provider" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="policyNumber">Insurance Policy Number <span class="required">*</span></label>
+                            <input type="text" id="policyNumber" name="Insurance Policy Number" placeholder="Your insurance policy number" required>
+                        </div>
+                    </div>
 
                     <button type="submit" class="submit-btn">
-                        <span>Submit Appointment</span>
+                        <span>Schedule Appointment</span>
                     </button>
                 </div>
             </form>
@@ -416,28 +514,8 @@
                             <img src="./assets/images/logo.png" width="160" height="46" loading="lazy" alt="Health Buddy logo">
                         </a>
                         <p class="footer-text">
-                            Health Buddy is a platform that provides various healthcare services including tumor detection, retina scanning, lung detection, and patient report analysis. Our mission is to help people live healthier lives.
+                            Health Buddy - Your healthcare companion
                         </p>
-                    </div>
-
-                    <div class="footer-list">
-                        <p class="footer-list-title">Services</p>
-                        <ul>
-                            <li><a href="tumor.html" class="footer-link hover-2">Tumor Detection</a></li>
-                            <li><a href="eye_index.html" class="footer-link hover-2">Retina Scanning</a></li>
-                            <li><a href="lung_index.html" class="footer-link hover-2">Lung Detection</a></li>
-                            <li><a href="#" class="footer-link hover-2">Patient Report Analysis</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-list">
-                        <p class="footer-list-title">Team Members</p>
-                        <ul>
-                            <li><a href="https://www.linkedin.com/in/sahithi-marri/" class="footer-link" target="_blank" rel="noopener noreferrer">Sahithi M</a></li>
-                            <li><a href="https://www.linkedin.com/in/aditeya-nelapati-141991283/" class="footer-link" target="_blank" rel="noopener noreferrer">Aditeya N</a></li>
-                            <li><a href="https://www.linkedin.com/in/hemanth-kumar-5a2bb9291/" class="footer-link" target="_blank" rel="noopener noreferrer">Hemanth Kumar S</a></li>
-                            <li><a href="https://www.linkedin.com/in/vedartham-saaket-a66340306/" class="footer-link" target="_blank" rel="noopener noreferrer">Saaket V</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -445,7 +523,40 @@
     </footer>
 
     <!-- Scripts -->
+    <!-- Chat widget for consistency -->
+    <div class="chat-widget">
+      <button id="chatToggleBtn" class="chat-toggle-btn">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      </button>
+      <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+          <h3><ion-icon name="medkit-outline"></ion-icon> HealthBuddy Assistant</h3>
+          <div class="chat-header-actions">
+            <select id="languageSelector" class="language-selector">
+              <option value="en">English</option>
+              <option value="hi">Hindi</option>
+              <option value="te">Telugu</option>
+            </select>
+            <button id="chatCloseBtn" class="chat-close-btn">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input-container">
+          <button id="chatVoiceBtn" class="chat-voice-btn">
+            <ion-icon name="mic-outline"></ion-icon>
+          </button>
+          <input id="chatInput" class="chat-input" placeholder="Type your message...">
+          <button id="chatSendBtn" class="chat-send-btn">
+            <ion-icon name="send-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/chatbot.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

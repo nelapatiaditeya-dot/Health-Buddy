@@ -2,8 +2,9 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    /* background-image: linear-gradient(to right, #a0b3c4 10%, #d3dedc 90%); */
-    background-image: linear-gradient(60deg, #0f1729);
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: "Segoe UI", sans-serif;
   }
   .navbar-list {
     display: flex;
@@ -68,7 +69,7 @@ body {
     list-style: none;
   }
   nav ul a {
-    color: black;
+    color: #e2e8f0;
     text-decoration: none;
     text-transform: capitalize;
   }

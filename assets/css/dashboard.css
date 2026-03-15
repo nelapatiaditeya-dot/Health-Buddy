@@ -1,0 +1,185 @@
+body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card Styling Enhancements */
+.dashboard-grid .card {
+    background: rgba(30, 41, 59, 0.7) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-grid .card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Circular Progress Health Score */
+.circular-progress {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#06b6d4 360deg, #1e293b 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+.inner-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#health-score-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+#health-status-text {
+    text-align: center;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* Quick Actions */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-buttons .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(99, 102, 241, 0.3);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -20px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #06b6d4;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+}
+
+.timeline-content h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    text-transform: capitalize;
+}
+
+.medicine-tag {
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.timeline-time {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Chatbot Insights Enhancements */
+.chatbot-insights-card {
+    padding: 30px !important;
+}
+
+.chatbot-insight-title {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #cbd5f5 !important;
+}
+
+.chatbot-insight-text {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    color: #e2e8f0 !important;
+    line-height: 1.6 !important;
+}
+
+.chatbot-insight-description {
+    font-size: 16px !important;
+    color: #94a3b8 !important;
+    line-height: 1.6 !important;
+}
+
+/* Layout Mapping */
+.health-summary-card, .quick-actions-card { grid-column: span 1; }
+.insights-card { grid-column: span 2; }
+.chart-card { grid-column: span 2; }
+.timeline-card { grid-column: span 4; }
+
+@media (min-width: 993px) {
+    .weekly-card { grid-column: span 2; }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Buddy - AI Assistant</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body id="top">
+
+  <!-- HEADER: Consistent -->
+  <header class="header" data-header>
+    <div class="container">
+      <div class="brand-group">
+        <a href="index.html" class="logo">
+          <i class="fas fa-heartbeat"></i> Health Buddy
+        </a>
+        <div class="page-indicator-wrapper">
+          <a href="index.html" class="home-btn">
+            <i class="fas fa-home"></i> Home
+          </a>
+          <span id="page-title-indicator"></span>
+        </div>
+      </div>
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+          <li><a href="index.html" class="navbar-link"><i class="fas fa-home"></i> Home</a></li>
+          <li>
+            <a href="chatbot.html" class="navbar-link chatbot-highlight active">
+              <i class="fas fa-robot"></i> HealthBuddy AI
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="navbar-link">Others <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" class="navbar-link" id="doctors-link"><i class="fas fa-user-md"></i> Doctors Near Me</a></li>
+              <li><a href="appointment.html" class="navbar-link"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+              <li><a href="dashboard.html" class="navbar-link"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+              <li><a href="contact1.html" class="navbar-link"><i class="fas fa-envelope"></i> Contact</a></li>
+              <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjrOVqQk_65ywZNGShHubc1eibTaMHyE-vkvCTHBlzig0aNw/viewform?embedded=true" class="navbar-link"><i class="fas fa-comment-dots"></i> Feedback</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="chatbot-page-wrapper" style="padding: 120px 20px 20px;">
+    <div class="container">
+      <div class="chatbot-page">
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <h3><ion-icon name="medkit-outline"></ion-icon> HealthBuddy AI</h3>
+            <span class="chat-header-status"><span class="status-dot"></span> Online • AI Health Assistant</span>
+          </div>
+          <div class="chat-header-actions">
+            <select id="languageSelector" class="language-selector" style="margin-right: 10px;">
+              <option value="en">English</option>
+              <option value="hi">Hindi</option>
+              <option value="te">Telugu</option>
+            </select>
+            <button id="clearChatBtn" class="chat-action-text-btn" title="Start New Session">
+              <ion-icon name="refresh-outline"></ion-icon> <span class="new-session-text">New Session</span>
+            </button>
+          </div>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input-container">
+          <button id="chatVoiceBtn" class="chat-voice-btn"><ion-icon name="mic-outline"></ion-icon></button>
+          <input id="chatInput" class="chat-input" placeholder="Describe your symptoms (e.g., I have a cough and cold)...">
+          <button id="chatSendBtn" class="chat-send-btn"><ion-icon name="send-outline"></ion-icon></button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/chatbot.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
